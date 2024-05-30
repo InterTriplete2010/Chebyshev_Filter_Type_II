@@ -1,6 +1,6 @@
-C++ Code to calculate the transfer function coefficients of a Chebychev Filter Type I
+C++ Code to calculate the transfer function coefficients of a Chebychev Filter Type II
 
-This code calculates the coefficients of the Band-pass, Band-stop, Low-pass and High-pass Chebychev Filter Type I. The file Chebyshev_Filter_Main.cpp can be used to test the code. It also filters the data, but no zero-phase delay is applied. The name space is: CH_FI. The code follows the same steps as in Matlab.
+This code calculates the coefficients of the Band-pass, Band-stop, Low-pass and High-pass Chebychev Filter Type II. The file Chebyshev_Filter_Main.cpp can be used to test the code. It also filters the data, but no zero-phase delay is applied. The name space is: CH_T2_FI. The code follows the same steps as in Matlab.
 
 Each filter function will return a 2 rows x N coefficients 2D vector, where Row 1 = Numerator and Row 2 = Denumerator. The method "check_stability_iir" can be used to check the stability of the filter.
 
