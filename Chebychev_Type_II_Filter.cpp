@@ -249,6 +249,27 @@ std::vector<std::complex<double>> Chebyshev_Type_II_Filter::cplxpair(std::vector
     if (real_part)
     {
     
+        std::complex<double> temp_complex;
+        //Make sure that the complex number with the negative imaginary part is listed first
+        for (int kk = 0; kk < complex_vector.size(); kk += 2)
+        {
+
+            if (kk + 1 < complex_vector.size())
+            {
+
+                if (complex_vector[kk].imag() > complex_vector[kk + 1].imag())
+                {
+
+                    temp_complex = complex_vector[kk];
+                    complex_vector[kk] = complex_vector[kk + 1];
+                    complex_vector[kk + 1] = temp_complex;
+
+                }
+
+            }
+
+        }
+
         output_complex_vector = complex_vector;
 
     }
@@ -415,6 +436,7 @@ void Chebyshev_Type_II_Filter::cheb2ap(int order_filt, double Rp)
 
     //Extract the real and imaginary part
     int track_index = 0;
+    int track_index_z = 0;
     for (double kk = p_matlab_cheby_temp.size(); kk > 0; kk--)
     {
 
@@ -424,10 +446,11 @@ void Chebyshev_Type_II_Filter::cheb2ap(int order_filt, double Rp)
         p_matlab_cheby.push_back(complex_real / (sinh(mu) * real_p_matlab_cheby[track_index] + complex_imag * cosh(mu) * imag_p_matlab_cheby[track_index]));
         p_matlab_product *= -p_matlab_cheby[track_index];
         
-        if (kk > 1)
+        if (track_index_z < z_matlab_cheby.size())
         {
 
             z_matlab_product *= -z_matlab_cheby[track_index];
+            track_index_z++;
 
         }
 
