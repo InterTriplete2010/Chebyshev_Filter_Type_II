@@ -385,7 +385,7 @@ void Chebyshev_Type_II_Filter::cheb2ap(int order_filt, double Rp)
         
     }
     
-    for (int kk = 0; kk < m_matlab / 2; kk++)
+    for (int kk = 0; kk < 2; kk++)
     {
 
         temp_indeces.push_back(temp_v);
@@ -411,7 +411,7 @@ void Chebyshev_Type_II_Filter::cheb2ap(int order_filt, double Rp)
     for (int kk = 0; kk < m_matlab / 2; kk++)
     {
 
-        for (int ll = 0; ll < m_matlab / 2; ll++)
+        for (int ll = 0; ll < 2; ll++)
         {
 
             z_matlab_cheby.push_back(z_matlab[temp_indeces[ll][kk]]);
@@ -466,7 +466,13 @@ void Chebyshev_Type_II_Filter::cheb2ap(int order_filt, double Rp)
     //If the real part is the same for all the number, order according to the absolute value of the highest imaginary part.
     //Within a pair, the element with negative imaginary part comes first.
     p_matlab_cheby = cplxpair(p_matlab_cheby);
-    z_matlab_cheby = cplxpair(z_matlab_cheby);
+
+    if (z_matlab_cheby.size() > 0)
+    {
+
+        z_matlab_cheby = cplxpair(z_matlab_cheby);
+
+    }
 
 }
 
